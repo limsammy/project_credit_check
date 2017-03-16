@@ -2,13 +2,22 @@ require 'pry'
 
 card_number = "4929735477250543"
 
-valid = false
+def check_card(card_number)
+	valid = false
+	final = []
 
-# Your Luhn Algorithm Here
-card_number_for_math = *(card_number.split('').map {|i| i.to_i})
-card_number_for_math = card_number_for_math.reverse
-card_number_times_two = card_number_for_math.map.with_index{|o,i| i.even? ? o : o * 2}
-binding.pry
+	card_number = *(card_number.split('').map {|i| i.to_i})
+	card_number= card_number.reverse
+	card_number_times_two = card_number.map.with_index{|o,e| e.even? ? o : o * 2}
+	card_number_times_two.each do |i|
+		if(i > 9)
+			first,sec = i.to_s.split('').map{|d| d.to_i}
+			final << (first + sec)
+	end
+	binding.pry
+end
+
+check_card(card_number)
 # Output
 ## If it is valid, print "The number is valid!"
 ## If it is invalid, print "The number is invalid!"
