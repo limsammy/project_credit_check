@@ -1,5 +1,3 @@
-require 'pry'
-
 class CardChecker
 	@card_type = "NOT A CARD"
 
@@ -12,14 +10,14 @@ class CardChecker
 	end
 
 	def check_card(card_number, type=type_card(card_number))
-		puts "Card Number: #{card_number}"
+		puts "Checking card #{card_number}....."
 		puts "Card Type: #{@card_type}"
 
 		valid = false
 		final = []
 
 		card_number = *(card_number.split('').map {|i| i.to_i})
-		card_number= card_number.reverse
+		card_number = card_number.reverse
 		card_number_times_two = card_number.map.with_index{|o,e| e.even? ? o : o * 2}
 
 		card_number_times_two.each do |i|
