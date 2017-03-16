@@ -9,6 +9,7 @@ def check_card(card_number)
 	card_number = *(card_number.split('').map {|i| i.to_i})
 	card_number= card_number.reverse
 	card_number_times_two = card_number.map.with_index{|o,e| e.even? ? o : o * 2}
+	
 	card_number_times_two.each do |i|
 		if(i > 9)
 			first,sec = i.to_s.split('').map{|d| d.to_i}
@@ -17,10 +18,14 @@ def check_card(card_number)
 			final.push(i)
 		end
 	end
-	binding.pry
+
+	sum_final = final.inject(:+)
+	if(sum_final % 10 == 0)
+		valid = true
+		puts "The number is valid!"
+	else
+		puts "The number is valid!"
+	end
 end
 
 check_card(card_number)
-# Output
-## If it is valid, print "The number is valid!"
-## If it is invalid, print "The number is invalid!"
