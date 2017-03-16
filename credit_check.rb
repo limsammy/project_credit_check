@@ -12,7 +12,10 @@ def check_card(card_number)
 	card_number_times_two.each do |i|
 		if(i > 9)
 			first,sec = i.to_s.split('').map{|d| d.to_i}
-			final << (first + sec)
+			final.push(first + sec)
+		else
+			final.push(i)
+		end
 	end
 	binding.pry
 end
