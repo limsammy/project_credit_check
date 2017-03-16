@@ -1,6 +1,7 @@
 require 'pry'
 
 card_number = "4929735477250543"
+invalid_test = "5541801923795240"
 
 def check_card(card_number)
 	valid = false
@@ -24,8 +25,9 @@ def check_card(card_number)
 		valid = true
 		puts "The number is valid!"
 	else
-		puts "The number is valid!"
+		puts "The number is invalid!"
 	end
 end
 
 check_card(card_number)
+check_card(invalid_test)
