@@ -1,8 +1,9 @@
 class CardChecker
 	@card_type = "NOT A CARD"
+	@sum_final = nil
 
 	def type_card(card_number)
-		if(card_number.to_s[0..2] == "342")
+		if card_number.to_s[0..2] == "342"
 			@card_type = "American Express"
 		else
 			@card_type = "Default"
@@ -21,7 +22,7 @@ class CardChecker
 		card_number_times_two = card_number.map.with_index{|o,e| e.even? ? o : o * 2}
 
 		card_number_times_two.each do |i|
-			if(i > 9)
+			if i > 9
 				first,sec = i.to_s.split('').map{|d| d.to_i}
 				final.push(first + sec)
 			else
@@ -29,14 +30,19 @@ class CardChecker
 			end
 		end
 
-		sum_final = final.inject(:+)
-		if(sum_final % 10 == 0)
+		@sum_final = final.inject(:+)
+	end
+
+	def isValid?(card_number)
+		check_card(card_number)
+		if @sum_final % 10 == 0
 			valid = true
 			puts "The number is valid!"
 		else
 			puts "The number is invalid!"
 		end
 	end
+
 end
 
 card_number1 = "4929735477250543"
@@ -46,8 +52,8 @@ am_ex = "342804633855673"
 invalid_test2 = "342801633855673"
 
 check = CardChecker.new
-check.check_card(card_number1)
-check.check_card(invalid_test)
-check.check_card(am_ex)
-check.check_card(invalid_test2)
+check.isValid?(card_number1)
+check.isValid?(invalid_test)
+check.isValid?(am_ex)
+check.isValid?(invalid_test2)
 
